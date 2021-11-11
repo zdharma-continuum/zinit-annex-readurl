@@ -1,7 +1,9 @@
 # z-a-readurl
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Introduction](#introduction)
@@ -75,7 +77,7 @@ If the archive URL has some different `/`-sections, then it's possible to strip
 the conflicting ones from the download URL by using `+++`, `++++`, etc. – the
 number of the `/`-section that'll be stripped equals to the number of the `+`
 minus
-2. So, for example:
+2\. So, for example:
 
 ```zsh
 zinit as'readurl|command' extract for \
@@ -86,9 +88,9 @@ zinit as'readurl|command' extract for \
 
 The annex provides:
 
-1.  Two new ices: `dlink''` and `dlink0''`.
-2.  A handling of the special values of the `as''` ice, i.e.: of `as'readurl'`,
-    `as'readurl|command'`, etc.
+1. Two new ices: `dlink''` and `dlink0''`.
+1. A handling of the special values of the `as''` ice, i.e.: of `as'readurl'`,
+   `as'readurl|command'`, etc.
 
 The annex works only with snippets, not plugins.
 
@@ -97,7 +99,7 @@ The annex works only with snippets, not plugins.
 Simply load like a regular plugin, i.e.:
 
 ```zsh
-zinit light zinit-zsh/z-a-readurl
+zinit light zdharma-continuum/z-a-readurl
 ```
 
 After executing the above command (possibly via `zshrc`) it's then possible to
@@ -123,7 +125,6 @@ Shift](https://www.openshift.com/) client, which doesn't sort the URLs from
 latest to the oldest – hence the exclamation mark (`!`) prepend – and it has
 special URLs like `stable-4.4` or `candidate-4.5` together with the regular
 version URLs (like `4.5.0-rc.1`):
-
 
 ```zsh
 zinit id-as"ocp" as"readurl|command" \
