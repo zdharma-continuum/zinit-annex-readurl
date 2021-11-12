@@ -1,4 +1,4 @@
-# z-a-readurl
+# zinit-annex-readurl
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -97,7 +97,7 @@ The annex works only with snippets, not plugins.
 Simply load like a regular plugin, i.e.:
 
 ```zsh
-zinit light zinit-zsh/z-a-readurl
+zinit light zinit-zsh/zinit-annex-readurl
 ```
 
 After executing the above command (possibly via `zshrc`) it's then possible to
