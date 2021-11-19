@@ -4,7 +4,7 @@
 # Copyright (c) 2019-2020 Sebastian Gniazdowski
 # License MIT
 
-→za-readurl-preinit-handler() {
+za-readurl-preinit-handler() {
 
 # Set the base and typically useful options
 builtin emulate -LR zsh

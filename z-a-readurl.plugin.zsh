@@ -9,14 +9,14 @@
 0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
 0="${${(M)0:#/*}:-$PWD/$0}"
 
-autoload -Uz →za-readurl-preinit-handler
+autoload -Uz za-readurl-preinit-handler
 
 # An empty stub to fill the help handler fields
 →za-readurl-help-null-handler() { :; }
 
 @zinit-register-annex "zinit-annex-readurl" \
     hook:preinit-10 \
-    →za-readurl-preinit-handler \
+    za-readurl-preinit-handler \
     →za-readurl-help-null-handler \
     "dlink''|.readurl''" # The ice conflict with dl'' from zinit-annex-patch-dl is being handled
                        # in the other annex
