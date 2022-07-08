@@ -99,7 +99,7 @@ The annex works only with snippets, not plugins.
 Simply load like a regular plugin, i.e.:
 
 ```zsh
-zinit light zdharma-continuum/z-a-readurl
+zinit light zdharma-continuum/zinit-annex-readurl
 ```
 
 After executing the above command (possibly via `zshrc`) it's then possible to
