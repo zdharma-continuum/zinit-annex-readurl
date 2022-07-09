@@ -47,7 +47,7 @@ beginning with the `http://…` prefix).
 Load as a regular plugin, via:
 
 ```zsh
-zinit light zdharma-continuum/z-a-readurl
+zinit light zdharma-continuum/zinit-annex-readurl
 ```
 
 After executing the above command (possibly via `zshrc`), it's then possible to use the `dlink''`
