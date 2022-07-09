@@ -1,4 +1,3 @@
-#!/usr/bin/env zsh
 # -*- mode: sh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 #
 # Copyright (c) 2016-2020 Sebastian Gniazdowski and contributors
