@@ -1,6 +1,6 @@
-
 #!/usr/bin/env zsh
-# -*- mode: sh; sh-indentation: 4; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
+# -*- mode: sh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim:ft=zsh:sw=2:sts=2:et:foldmarker=[[[,]]]:foldmethod=marker
 #
 # Copyright (c) 2016-2020 Sebastian Gniazdowski and contributors
 # Copyright (c) 2021-2022 zdharma-continuum and contributors
@@ -159,20 +159,18 @@ za-readurl-preinit-handler() {
 
     if [[ -z $selected ]] {
       +zinit-message "{pre}readurl annex: {error}ERROR:{rst}" \
-        "couldn't match the URL${${(M)cur_paturl:#$pattern_url0}:+-0} at the download page" \
-        "(which is {url}${dlpage//\%/%%}{rst}${${__id_as:#$__url}:+; the snippet is being identified as" \
-        "{meta}${__id_as}{rst}}; was matching {data2}${cur_paturl}{rst})."
+        "No valid URLs (${${(M)cur_paturl:#$pattern_url0}:+-0}) when searching {url}${dlpage//\%/%%}{rst}${${__id_as:#$__url}:+ --" \
+        "the snippet is being identified as {meta}${__id_as}{rst}}; was matching {data2}${cur_paturl}{rst})."
       return 9
     }
 
-    if [[ $selected = /* ]] {
+    if [[ $selected = /* ]]; then
       local domain protocol
       if [[ $dlpage = (#b)(#i)((http(s|)|ftp(s|)|ssh|scp)://|)([^/]##)(*) ]] {
         protocol=$match[1] domain=$match[5]
       }
       if [[ -z $domain ]] {
-        +zinit-message "{pre}readurl annex: {ehi}ERROR:{error} couldn't establish the domain name (unsupported" \
-          "protocol? supported are: {data}http(s){error},{data}ftp(s){error},{data}ssh{error},{data}scp{error}).{rst}"
+        +zinit-message "{pre}readurl annex: {ehi}ERROR:{error} couldn't establish the domain name (unsupported protocol? supported are: {data}http(s){error},{data}ftp(s){error},{data}ssh{error},{data}scp{error}).{rst}"
         return 9
       }
       local new_url=${protocol:-http://}$domain$selected
@@ -197,10 +195,10 @@ za-readurl-preinit-handler() {
   fi
 
   # Handle the update
-  if [[ $__subtype == update(|:*) && -z $opts[(r)-f] ]] {
+  if [[ $__subtype == update(|:*) && -z $opts[(r)-f] ]]; then
     { local old_url="$(<$__dir/._zinit/url_rsvd)"; } 2>/dev/null
     [[ $old_url == $new_url ]] && return 8
-  }
+  fi
 
   # Assign outer-scope parameters
   url=$new_url
@@ -214,5 +212,3 @@ za-readurl-preinit-handler() {
   +zinit-message "{pre}readurl annex: {msg}Matched the following URL: {url}${new_url}{rst}"
   return 0
 }
-
-# vim:ft=zsh:sw=2:sts=2:et:foldmarker=[[[,]]]:foldmethod=marker
