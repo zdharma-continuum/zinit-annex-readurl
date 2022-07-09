@@ -26,7 +26,7 @@ It works as follows:
 
 So, for example:
 
-````zsh
+```zsh
 zinit for \
     as'readurl|command' \
     dlink'/junegunn/fzf-bin/releases/download/%VERSION%/fzf-%VERSION%-linux_amd64.tgz'
