@@ -44,7 +44,7 @@ It works as follows:
 
 So, for example:
 
-````zsh
+```zsh
 zinit for \
     as'readurl|command' \
     dlink'/junegunn/fzf-bin/releases/download/%VERSION%/fzf-%VERSION%-linux_amd64.tgz'
@@ -72,7 +72,7 @@ zinit for \
     extract \
     id-as'terraform' \
   http://releases.hashicorp.com/terraform/
-````
+```
 
 ## Skipping `dlink''` Ice<a name="skipping-dlink-ice"></a>
 
