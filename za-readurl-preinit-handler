@@ -172,7 +172,7 @@ za-readurl-preinit-handler() {
   ZINIT[annex-multi-flag:pull-active]=2
   if [[ $__subtype == update(|:*) ]]; then
     typeset -gA OPTS
-    OPTS[opt_ - q, --quiet]=0
+    OPTS[opt_-q,--quiet]=0
   fi
   +zinit-message "{pre}readurl annex: {msg}Matched the following URL: {url}${new_url}{rst}"
   return 0
