@@ -117,8 +117,8 @@ za-readurl-preinit-handler() {
   local cur_paturl
   for cur_paturl in $pattern_url0 $pattern_url; do
     index+=1
-    .zinit-download-file-stdout $dlpage >| $tmpfile || {
-      .zinit-download-file-stdout $dlpage 1 >| $tmpfile || {
+    _zi::-download-file-stdout $dlpage >| $tmpfile || {
+      _zi::-download-file-stdout $dlpage 1 >| $tmpfile || {
         +zinit-message "{pre}readurl annex: {error}ERROR: couldn't" "fetch the download page ({url}${dlpage//\%/%%}{error}){rst}"
         return 9
       }
