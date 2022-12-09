@@ -16,7 +16,7 @@ za-readurl-preinit-handler() {
     return 0
   fi
   [[ $1 == plugin ]] && {
-    +zinit-message "{pre}readurl annex: {error}ERROR: as'$ICE[as]'" "ice can be used only with snippets.{rst}"
+    +zi::message "{pre}readurl annex: {error}ERROR: as'$ICE[as]'" "ice can be used only with snippets.{rst}"
     return 7
   }
   local __type=$1 __url=$2 __id_as=$3 __dir=$4 __hook=$5 __subtype=$6
@@ -30,7 +30,7 @@ za-readurl-preinit-handler() {
     ICE[pick]=${ICE[pick]:-/dev/null}
   else
     if [[ $ICE[as] != readurl ]]; then
-      +zinit-message "{pre}readurl annex: {msg2}" "Warning: Unrecognized as'readurl|{data2}...{msg2}' variant ({data2}$ICE[as]{msg2})." "Falling back to {meta}as{hi}'{data}readurl{hi}'{msg2}.{rst}"
+      +zi::message "{pre}readurl annex: {msg2}" "Warning: Unrecognized as'readurl|{data2}...{msg2}' variant ({data2}$ICE[as]{msg2})." "Falling back to {meta}as{hi}'{data}readurl{hi}'{msg2}.{rst}"
     fi
     unset 'ICE[as]'
   fi
@@ -86,7 +86,7 @@ za-readurl-preinit-handler() {
     elif ((${#urls} == 1)); then
       local pattern_url=${urls[@]:#0*} pattern_url0=${${(M)urls[@]:#0*}##0(:|=)(#c0,1)}
       if [[ -n $pattern_url0 ]]; then
-        +zinit-message "{pre}readurl annex: {error}ERROR:{rst}" "The {meta}dlink0''{rst} ice cannot be used alone," "{meta}dlink''{rst} is always required."
+        +zi::message "{pre}readurl annex: {error}ERROR:{rst}" "The {meta}dlink0''{rst} ice cannot be used alone," "{meta}dlink''{rst} is always required."
         return 9
       fi
       if [[ $pattern_url == \!* ]]; then
@@ -100,7 +100,7 @@ za-readurl-preinit-handler() {
         fi
       fi
     elif ((${#urls} > 2)); then
-      +zinit-message "{pre}readurl annex: {error}ERROR: {msg2}The ice {meta}dlink''{msg2}" "has been used too many times: {meta}#{obj}${#urls}{msg2}, while it can be used at most" "two times, as {meta2}dlink0''{msg2} and then {meta2}dlink''{msg2}, aborting.{rst}"
+      +zi::message "{pre}readurl annex: {error}ERROR: {msg2}The ice {meta}dlink''{msg2}" "has been used too many times: {meta}#{obj}${#urls}{msg2}, while it can be used at most" "two times, as {meta2}dlink0''{msg2} and then {meta2}dlink''{msg2}, aborting.{rst}"
       return 9
     else
       local pattern_url=$ICE[dlink]
@@ -117,9 +117,9 @@ za-readurl-preinit-handler() {
   local cur_paturl
   for cur_paturl in $pattern_url0 $pattern_url; do
     index+=1
-    .zinit-download-file-stdout $dlpage >| $tmpfile || {
-      .zinit-download-file-stdout $dlpage 1 >| $tmpfile || {
-        +zinit-message "{pre}readurl annex: {error}ERROR: couldn't" "fetch the download page ({url}${dlpage//\%/%%}{error}){rst}"
+    zi::download-file-stdout $dlpage >| $tmpfile || {
+      zi::download-file-stdout $dlpage 1 >| $tmpfile || {
+        +zi::message "{pre}readurl annex: {error}ERROR: couldn't" "fetch the download page ({url}${dlpage//\%/%%}{error}){rst}"
         return 9
       }
     }
@@ -135,7 +135,7 @@ za-readurl-preinit-handler() {
     local selected=${list[1]#href=}
     selected=${selected#[\"\']}
     if [[ -z $selected ]]; then
-      +zinit-message "{pre}readurl annex: {error}ERROR:{rst}" "couldn't match the URL${${(M)cur_paturl:#$pattern_url0}:+-0} at the download page" "(which is {url}${dlpage//\%/%%}{rst}${${__id_as:#$__url}:+; the snippet is being identified as" "{meta}${__id_as}{rst}}; was matching {data2}${cur_paturl}{rst})."
+      +zi::message "{pre}readurl annex: {error}ERROR:{rst}" "couldn't match the URL${${(M)cur_paturl:#$pattern_url0}:+-0} at the download page" "(which is {url}${dlpage//\%/%%}{rst}${${__id_as:#$__url}:+; the snippet is being identified as" "{meta}${__id_as}{rst}}; was matching {data2}${cur_paturl}{rst})."
       return 9
     fi
     if [[ $selected == /* ]]; then
@@ -144,7 +144,7 @@ za-readurl-preinit-handler() {
         protocol=$match[1] domain=$match[5]
       fi
       if [[ -z $domain ]]; then
-        +zinit-message "{pre}readurl annex: {ehi}ERROR:{error} couldn't establish the domain name (unsupported" "protocol? supported are: {data}http(s){error},{data}ftp(s){error},{data}ssh{error},{data}scp{error}).{rst}"
+        +zi::message "{pre}readurl annex: {ehi}ERROR:{error} couldn't establish the domain name (unsupported" "protocol? supported are: {data}http(s){error},{data}ftp(s){error},{data}ssh{error},{data}scp{error}).{rst}"
         return 9
       fi
       local new_url=${protocol:-http://}$domain$selected
@@ -174,6 +174,6 @@ za-readurl-preinit-handler() {
     typeset -gA OPTS
     OPTS[opt_-q,--quiet]=0
   fi
-  +zinit-message "{pre}readurl annex: {msg}Matched the following URL: {url}${new_url}{rst}"
+  +zi::message "{pre}readurl annex: {msg}Matched the following URL: {url}${new_url}{rst}"
   return 0
 } # ]]]
