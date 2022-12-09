@@ -22,7 +22,7 @@ autoload -Uz za-readurl-preinit-handler
 
 # The ice conflict with dl'' from zinit-annex-patch-dl is being handled in the
 # other annex
-@zinit-register-annex \
+@zi::register-annex \
   "zinit-annex-readurl" \
   hook:preinit-10 \
   za-readurl-preinit-handler \
