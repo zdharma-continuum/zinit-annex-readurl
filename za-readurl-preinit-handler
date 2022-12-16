@@ -40,7 +40,7 @@ za-readurl-preinit-handler() {
   local -a match mbegin mend
   local MATCH
   integer MBEGIN MEND
-  (( ${+functions[.zinit-setup-plugin-dir]} != 1 )) || builtin source $ZINIT[BIN_DIR]/zinit-install.zsh
+  (( ${+functions[zi::setup-plugin-dir]} != 1 )) || builtin source $ZINIT[BIN_DIR]/zinit-install.zsh
   match=()
   local dlpage=${__url%(#b)([^+])++*}
   dlpage=$dlpage$match[1]
